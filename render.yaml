@@ -3,7 +3,7 @@ services:
     name: trackr
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build:render
+    buildCommand: NPM_CONFIG_PRODUCTION=false npm install && npm run build:render
     startCommand: npm run start:server
     healthCheckPath: /api/health
     envVars:
