@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$TIP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0B0D;
+    --surface:#141519;
+    --surface-2:#1B1D22;
+    --line:#2A2C31;
+    --bone:#EDEAE2;
+    --grey:#8B8D93;
+    --brass:#C9A24B;
+    --brass-dim:#8E7638;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.serif{
+    font-family:'Newsreader',serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(10,11,13,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:72px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Newsreader',serif;
+    font-size:20px;
+  }
+  .brand svg{width:22px;height:22px;}
+  .nav-links{
+    display:flex;
+    gap:32px;
+    font-size:14px;
+    color:var(--grey);
+  }
+  .nav-links a:hover{color:var(--bone);}
+  .nav-cta{
+    border:1px solid var(--brass-dim);
+    color:var(--brass);
+    padding:9px 18px;
+    border-radius:2px;
+    font-size:13px;
+    transition:border-color .2s, color .2s;
+  }
+  .nav-cta:hover{border-color:var(--brass); color:var(--bone);}
+
+  @media (max-width:720px){
+    .nav-links{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:110px 0 90px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .glow{
+    position:absolute;
+    top:-140px;
+    left:50%;
+    transform:translateX(-50%);
+    width:560px;
+    height:420px;
+    background:radial-gradient(ellipse at center, rgba(201,162,75,0.14), transparent 65%);
+    pointer-events:none;
+  }
+  .mark{
+    width:88px;
+    height:auto;
+    margin:0 auto 36px;
+    position:relative;
+  }
+  .ticker-chip{
+    display:inline-block;
+    font-size:13px;
+    letter-spacing:.03em;
+    color:var(--brass);
+    border:1px solid var(--brass-dim);
+    padding:6px 16px;
+    border-radius:100px;
+    margin-bottom:28px;
+  }
+  h1.headline{
+    font-size:clamp(42px, 7vw, 76px);
+    line-height:1.04;
+    max-width:780px;
+    margin:0 auto 22px;
+  }
+  h1.headline em{
+    font-style:italic;
+    color:var(--brass);
+  }
+  .sub{
+    max-width:480px;
+    margin:0 auto 44px;
+    color:var(--grey);
+    font-size:17px;
+  }
+  .hero-actions{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--brass);
+    color:#0A0B0D;
+    padding:14px 30px;
+    border-radius:2px;
+    font-size:14px;
+    font-weight:600;
+    transition:background .2s;
+  }
+  .btn-primary:hover{background:#DDB861;}
+  .ca-pill{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    padding:12px 16px;
+    border-radius:2px;
+    font-size:13px;
+    color:var(--grey);
+    cursor:pointer;
+    transition:border-color .2s;
+  }
+  .ca-pill:hover{border-color:var(--brass-dim);}
+  .ca-pill code{
+    color:var(--bone);
+    font-family:'Inter',monospace;
+    max-width:220px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .ca-pill svg{width:14px;height:14px;flex-shrink:0;}
+  .ca-copied{color:var(--brass);}
+
+  /* ---------- SECTION shared ---------- */
+  section{padding:96px 0;}
+  .section-head{
+    max-width:560px;
+    margin-bottom:56px;
+  }
+  .section-head h2{
+    font-size:clamp(28px,4vw,38px);
+    margin-bottom:16px;
+  }
+  .section-head p{
+    color:var(--grey);
+    font-size:16px;
+  }
+  .divider{
+    height:1px;
+    background:var(--line);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:72px;
+    align-items:center;
+  }
+  .about-copy p{
+    color:var(--grey);
+    font-size:16px;
+    margin-bottom:20px;
+    max-width:440px;
+  }
+  .about-copy p strong{color:var(--bone); font-weight:500;}
+  .about-visual{
+    border:1px solid var(--line);
+    background:var(--surface);
+    padding:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .about-visual svg{width:100%; max-width:220px; height:auto;}
+
+  @media (max-width:800px){
+    .about-grid{grid-template-columns:1fr; gap:40px;}
+    .about-visual{order:-1; padding:36px;}
+  }
+
+  /* ---------- STATS ---------- */
+  .stats-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .stat{
+    padding:36px 24px;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{
+    font-family:'Newsreader',serif;
+    font-size:32px;
+    color:var(--brass);
+    margin-bottom:6px;
+  }
+  .stat .label{
+    font-size:13px;
+    color:var(--grey);
+  }
+  @media (max-width:720px){
+    .stats-row{grid-template-columns:repeat(2,1fr);}
+    .stat{border-bottom:1px solid var(--line);}
+    .stat:nth-child(2n){border-right:none;}
+  }
+
+  /* ---------- HOW TO BUY ---------- */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .step{
+    background:var(--ink);
+    padding:36px 28px;
+  }
+  .step .idx{
+    font-family:'Newsreader',serif;
+    font-style:italic;
+    color:var(--brass);
+    font-size:24px;
+    margin-bottom:18px;
+    display:block;
+  }
+  .step h3{
+    font-size:17px;
+    margin-bottom:10px;
+    font-weight:500;
+  }
+  .step p{
+    font-size:14px;
+    color:var(--grey);
+  }
+  @media (max-width:800px){
+    .steps{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:500px){
+    .steps{grid-template-columns:1fr;}
+  }
+
+  /* ---------- CA BAND ---------- */
+  .ca-band{
+    text-align:center;
+    padding:80px 0;
+    border-top:1px solid var(--line);
+  }
+  .ca-band .label{
+    color:var(--grey);
+    font-size:13px;
+    margin-bottom:18px;
+  }
+  .ca-band .address{
+    font-family:'Inter',monospace;
+    font-size:clamp(13px,2vw,16px);
+    color:var(--bone);
+    word-break:break-all;
+    max-width:640px;
+    margin:0 auto 24px;
+    padding:0 16px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:48px 0;
+  }
+  footer .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .foot-brand{
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    font-family:'Newsreader',serif;
+    font-size:clamp(28px,4vw,36px);
+    color:var(--bone);
+    cursor:grab;
+    user-select:none;
+    transition:color .2s, transform .2s;
+  }
+  .foot-brand:hover{color:var(--brass);}
+  .foot-brand:active{cursor:grabbing; transform:scale(0.98);}
+  .foot-brand svg{
+    width:40px;
+    height:40px;
+    flex-shrink:0;
+  }
+  .foot-brand-hint{
+    display:block;
+    margin-top:6px;
+    font-family:'Inter',sans-serif;
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--grey);
+  }
+  .foot-links{
+    display:flex;
+    gap:24px;
+    font-size:14px;
+    color:var(--grey);
+  }
+  .foot-links a:hover{color:var(--bone);}
+  .foot-note{
+    font-size:13px;
+    color:var(--grey);
+    max-width:420px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 12 C34 12 16 42 16 62 C16 78 30 88 50 76 C70 88 84 78 84 62 C84 42 66 12 50 12 Z" stroke="#EDEAE2" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M50 14 V30" stroke="#EDEAE2" stroke-width="7" stroke-linecap="round"/>
+      </svg>
+      $TIP
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#buy">How to buy</a>
+    </div>
+    <a class="nav-cta" href="#buy">Get $TIP</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="mark">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 12 C34 12 16 42 16 62 C16 78 30 88 50 76 C70 88 84 78 84 62 C84 42 66 12 50 12 Z" stroke="#EDEAE2" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M50 14 V30" stroke="#EDEAE2" stroke-width="6" stroke-linecap="round"/>
+        <path d="M40 76 V96 M60 76 V96" stroke="#EDEAE2" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="ticker-chip">$TIP · Solana</span>
+    <h1 class="headline">The top of the <em>curve</em>,<br>every single time.</h1>
+    <p class="sub">$TIP rewards the ones who show up early. No roadmap theatrics, no team unlock games — just a clean chart and a good tip.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#buy">Get $TIP</a>
+      <div class="ca-pill" id="caPill">
+        <code id="caText">Fhxcx7cHmhDkfwziHyCwN8vQRvEFRK3zezokaE8gL5q7</code>
+        <svg id="caIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="1"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy">
+        <h2 class="serif">Built for the moment it peaks.</h2>
+        <p>$TIP is a Solana memecoin about one feeling everyone chases: <strong>catching the top</strong>. No utility promises, no pretending to be more than it is — just a coin that says the quiet part out loud.</p>
+        <p>Liquidity is locked, the contract is renounced, and the supply has been fixed since launch. What you see is what's circulating.</p>
+        <p>Community-run, community-fed. If you're early, you're already part of it.</p>
+      </div>
+      <div class="about-visual">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 12 C34 12 16 42 16 62 C16 78 30 88 50 76 C70 88 84 78 84 62 C84 42 66 12 50 12 Z" stroke="#C9A24B" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M50 14 V30" stroke="#C9A24B" stroke-width="5" stroke-linecap="round"/>
+          <path d="M40 76 V96 M60 76 V96" stroke="#C9A24B" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-row" id="tokenomics">
+  <div class="stat">
+    <div class="num">1B</div>
+    <div class="label">Total supply</div>
+  </div>
+  <div class="stat">
+    <div class="num">0%</div>
+    <div class="label">Buy / sell tax</div>
+  </div>
+  <div class="stat">
+    <div class="num">100%</div>
+    <div class="label">LP locked</div>
+  </div>
+  <div class="stat">
+    <div class="num">0%</div>
+    <div class="label">Team allocation</div>
+  </div>
+</div>
+
+<section id="buy">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="serif">How to buy</h2>
+      <p>Four steps, five minutes, one contract address.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="idx">1</span>
+        <h3>Get a wallet</h3>
+        <p>Download Phantom or another Solana wallet and fund it with SOL from an exchange.</p>
+      </div>
+      <div class="step">
+        <span class="idx">2</span>
+        <h3>Head to a DEX</h3>
+        <p>Open Jupiter or Raydium and connect your wallet.</p>
+      </div>
+      <div class="step">
+        <span class="idx">3</span>
+        <h3>Paste the address</h3>
+        <p>Search $TIP using the contract address below to find the correct pool.</p>
+      </div>
+      <div class="step">
+        <span class="idx">4</span>
+        <h3>Swap for $TIP</h3>
+        <p>Confirm the swap, set your slippage, and you're in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ca-band">
+  <div class="label">Contract address</div>
+  <div class="address">Fhxcx7cHmhDkfwziHyCwN8vQRvEFRK3zezokaE8gL5q7</div>
+  <div class="hero-actions">
+    <div class="ca-pill" id="caPill2">
+      <span>Copy address</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="1"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="foot-brand" id="tipBookmark" href="#" draggable="true" title="Drag to your bookmarks bar">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M50 12 C34 12 16 42 16 62 C16 78 30 88 50 76 C70 88 84 78 84 62 C84 42 66 12 50 12 Z" stroke="#C9A24B" stroke-width="7" stroke-linejoin="round"/>
+          <path d="M50 14 V30" stroke="#C9A24B" stroke-width="7" stroke-linecap="round"/>
+        </svg>
+        $TIP
+      </a>
+      <span class="foot-brand-hint">Drag to bookmarks bar</span>
+    </div>
+    <div class="foot-links">
+      <a href="#" onclick="return false;">X</a>
+      <a href="#" onclick="return false;">Telegram</a>
+      <a href="#" onclick="return false;">DexScreener</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:24px;">
+    <p class="foot-note">$TIP is a memecoin with no intrinsic value or expectation of financial return. It exists for entertainment. Do your own research.</p>
+  </div>
+</footer>
+
+<script>
+  const CA = "Fhxcx7cHmhDkfwziHyCwN8vQRvEFRK3zezokaE8gL5q7";
+  const TRACKR_URL = "https://trackr-98na.onrender.com";
+
+  function wireCopy(el){
+    el.addEventListener('click', () => {
+      navigator.clipboard.writeText(CA).then(() => {
+        const original = el.innerHTML;
+        el.classList.add('ca-copied');
+        const label = el.querySelector('code') ? 'Copied' : 'Copied';
+        if(el.querySelector('code')){
+          el.querySelector('code').textContent = 'Copied to clipboard';
+        } else if (el.querySelector('span')) {
+          el.querySelector('span').textContent = 'Copied';
+        }
+        setTimeout(() => {
+          el.innerHTML = original;
+          el.classList.remove('ca-copied');
+        }, 1600);
+      });
+    });
+  }
+  wireCopy(document.getElementById('caPill'));
+  wireCopy(document.getElementById('caPill2'));
+
+  (function initBookmark() {
+    const link = document.getElementById('tipBookmark');
+    if (!link) return;
+
+    fetch(TRACKR_URL + '/fomo-bookmarklet.js')
+      .then((response) => response.text())
+      .then((code) => {
+        const bookmark = code
+          .replaceAll('__APP_URL__', TRACKR_URL)
+          .replaceAll('__NETLIFY_URL__', TRACKR_URL)
+          .trim();
+        link.href = 'javascript:' + encodeURIComponent(bookmark);
+      })
+      .catch(() => {
+        link.title = 'Could not load bookmark — open ' + TRACKR_URL + '/use';
+      });
+
+    link.addEventListener('click', (event) => event.preventDefault());
+
+    link.addEventListener('dragstart', (event) => {
+      const bookmarkUrl = link.href;
+      if (!bookmarkUrl || bookmarkUrl === '#') return;
+      event.dataTransfer.setData('text/uri-list', bookmarkUrl);
+      event.dataTransfer.setData('text/plain', bookmarkUrl);
+      event.dataTransfer.effectAllowed = 'copy';
+    });
+  })();
+</script>
+
+</body>
+</html>
