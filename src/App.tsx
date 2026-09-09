@@ -1596,6 +1596,8 @@ function DragBookmarkOverlay() {
   )
 }
 
+const BOOKMARK_NAME = 'fomo twitter tracker'
+
 function buildFomoBookmarkUrl() {
   const appUrl = window.location.origin
   const runnerUrl = netlifyUrl()
@@ -1619,7 +1621,9 @@ function DragTrackerButton() {
 
   useEffect(() => {
     buildFomoBookmarkUrl().then((url) => {
-      if (buttonRef.current) buttonRef.current.href = url
+      if (!buttonRef.current) return
+      buttonRef.current.href = url
+      buttonRef.current.title = BOOKMARK_NAME
     })
   }, [])
 
@@ -1698,6 +1702,10 @@ function DragTrackerButton() {
     if (!bookmarkUrl) return
     event.dataTransfer.setData('text/uri-list', bookmarkUrl)
     event.dataTransfer.setData('text/plain', bookmarkUrl)
+    event.dataTransfer.setData(
+      'text/html',
+      `<a href="${bookmarkUrl}">${BOOKMARK_NAME}</a>`,
+    )
     event.dataTransfer.effectAllowed = 'copy'
     dragging.current = true
     parkHover()
@@ -1714,6 +1722,7 @@ function DragTrackerButton() {
       <a
         ref={buttonRef}
         href="#"
+        title={BOOKMARK_NAME}
         draggable
         onClick={(event) => event.preventDefault()}
         onPointerDown={showHint}

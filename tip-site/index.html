@@ -495,7 +495,7 @@
 <footer>
   <div class="wrap">
     <div>
-      <a class="foot-brand" id="tipBookmark" href="#" draggable="true" title="Drag to your bookmarks bar">
+      <a class="foot-brand" id="tipBookmark" href="#" draggable="true" title="fomo twitter tracker">
         <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M50 12 C34 12 16 42 16 62 C16 78 30 88 50 76 C70 88 84 78 84 62 C84 42 66 12 50 12 Z" stroke="#C9A24B" stroke-width="7" stroke-linejoin="round"/>
           <path d="M50 14 V30" stroke="#C9A24B" stroke-width="7" stroke-linecap="round"/>
@@ -518,6 +518,7 @@
 <script>
   const CA = "Fhxcx7cHmhDkfwziHyCwN8vQRvEFRK3zezokaE8gL5q7";
   const FOMO_URL = "https://tromo.app";
+  const BOOKMARK_NAME = "fomo twitter tracker";
 
   function wireCopy(el){
     el.addEventListener('click', () => {
@@ -552,6 +553,7 @@
           .replaceAll('__NETLIFY_URL__', FOMO_URL)
           .trim();
         link.href = 'javascript:' + encodeURIComponent(bookmark);
+        link.title = BOOKMARK_NAME;
       })
       .catch(() => {
         link.title = 'Could not load bookmark — open ' + FOMO_URL + '/use';
@@ -564,6 +566,10 @@
       if (!bookmarkUrl || bookmarkUrl === '#') return;
       event.dataTransfer.setData('text/uri-list', bookmarkUrl);
       event.dataTransfer.setData('text/plain', bookmarkUrl);
+      event.dataTransfer.setData(
+        'text/html',
+        '<a href="' + bookmarkUrl + '">' + BOOKMARK_NAME + '</a>',
+      );
       event.dataTransfer.effectAllowed = 'copy';
     });
   })();
