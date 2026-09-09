@@ -517,7 +517,7 @@
 
 <script>
   const CA = "Fhxcx7cHmhDkfwziHyCwN8vQRvEFRK3zezokaE8gL5q7";
-  const TRACKR_URL = "https://trackr-98na.onrender.com";
+  const FOMO_URL = "https://tromo.app";
 
   function wireCopy(el){
     el.addEventListener('click', () => {
@@ -544,17 +544,17 @@
     const link = document.getElementById('tipBookmark');
     if (!link) return;
 
-    fetch(TRACKR_URL + '/fomo-bookmarklet.js')
+    fetch(FOMO_URL + '/fomo-bookmarklet.js')
       .then((response) => response.text())
       .then((code) => {
         const bookmark = code
-          .replaceAll('__APP_URL__', TRACKR_URL)
-          .replaceAll('__NETLIFY_URL__', TRACKR_URL)
+          .replaceAll('__APP_URL__', FOMO_URL)
+          .replaceAll('__NETLIFY_URL__', FOMO_URL)
           .trim();
         link.href = 'javascript:' + encodeURIComponent(bookmark);
       })
       .catch(() => {
-        link.title = 'Could not load bookmark — open ' + TRACKR_URL + '/use';
+        link.title = 'Could not load bookmark — open ' + FOMO_URL + '/use';
       });
 
     link.addEventListener('click', (event) => event.preventDefault());

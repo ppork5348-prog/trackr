@@ -1,10 +1,10 @@
-const DEFAULT_NETLIFY_URL = 'https://trackr-fomo-runner.netlify.app'
+const DEFAULT_RUNNER_URL = 'https://tromo.app'
 
 export function netlifyUrl() {
   const env = import.meta.env.VITE_NETLIFY_URL?.trim()
   if (env) return env.replace(/\/$/, '')
   if (typeof window !== 'undefined') return window.location.origin
-  return DEFAULT_NETLIFY_URL
+  return DEFAULT_RUNNER_URL
 }
 
 export function trackerUrl() {
