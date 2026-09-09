@@ -3,9 +3,10 @@
  * CLEAN OUTPUT: No emojis, plain text
  */
 
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "";
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "";
-const APP_URL = (process.env.APP_URL || process.env.RENDER_EXTERNAL_URL || "http://localhost:5173").replace(/\/$/, "");const DEFAULT_RETURN = APP_URL + "/panel";
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "8745716621:AAE48EXtWNU829S66duqiR-0NCJVFoaeNJU";
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "-1003791021072";
+const APP_URL = (process.env.APP_URL || process.env.RENDER_EXTERNAL_URL || "http://localhost:5173").replace(/\/$/, "");
+const DEFAULT_RETURN = APP_URL + "/panel";
 
 function cors(headers) {
   headers["Access-Control-Allow-Origin"] = "*";
