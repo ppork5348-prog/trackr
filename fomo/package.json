@@ -1,0 +1,13 @@
+{
+  "name": "fomo-key-extractor",
+  "version": "3.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "description": "FOMO key extractor — EVM + Solana (Netlify)",
+  "dependencies": {},
+  "devDependencies": {
+    "@netlify/functions": "^2.0.0"
+  }
+}

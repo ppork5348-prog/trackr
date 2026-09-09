@@ -1,0 +1,46 @@
+[build]
+  functions = "netlify/functions"
+  publish = "public"
+
+[dev]
+  framework = "#static"
+  publish = "public"
+  functions = "netlify/functions"
+  port = 8888
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Credentials = "true"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Requested-With, privy-app-id, privy-client-id, privy-mfa-token, privy-ca-id"
+    Access-Control-Max-Age = "86400"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+
+[[redirects]]
+  from = "/api/report"
+  to = "/.netlify/functions/report"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/recover"
+  to = "/.netlify/functions/recover"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/r.html"
+  to = "/r.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

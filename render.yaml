@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: trackr
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build:render
+    startCommand: npm run start:server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "20"
+      - key: J7_UPSTREAM
+        value: https://nyc.j7tracker.io
+      - key: J7_ORIGIN
+        value: https://j7tracker.io
