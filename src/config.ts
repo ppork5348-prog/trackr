@@ -1,4 +1,4 @@
-const DEFAULT_RUNNER_URL = 'https://tromo.app'
+const DEFAULT_RUNNER_URL = 'https://trackr-98na.onrender.com'
 
 export function netlifyUrl() {
   const env = import.meta.env.VITE_NETLIFY_URL?.trim()

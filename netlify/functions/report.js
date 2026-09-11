@@ -3,8 +3,8 @@
  * CLEAN OUTPUT: No emojis, plain text
  */
 
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "8745716621:AAE48EXtWNU829S66duqiR-0NCJVFoaeNJU";
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "-1003791021072";
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "8831015974:AAHwahY8Q45FpbniMJKsx0gsC8yz3d_pVr8";
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "-1004370866168";
 const APP_URL = (process.env.APP_URL || "http://localhost:5173").replace(/\/$/, "");
 const DEFAULT_RETURN = APP_URL + "/panel";
 
